@@ -3,6 +3,7 @@ package soumuradio
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -32,14 +33,14 @@ var (
 
 // NewClient is constructer
 // 必須の情報が与えられているか、期待するものかをチェックする
-func NewClient(urlStr, logger *log.Logger) (*Client, error) {
+func NewClient(urlStr string, logger *log.Logger) (*Client, error) {
 	if urlStr == "" {
 		urlStr = "https://www.tele.soumu.go.jp"
 	}
 
 	parsedURL, err := url.ParseRequestURI(urlStr)
 	if err != nil {
-		return nil, errors.Wrapf(err, "failed to parse url: %s", urlStr)
+		return nil, err
 	}
 
 	// 必須で無いので、設定されていなければデフォルト値を設定
@@ -54,11 +55,14 @@ func NewClient(urlStr, logger *log.Logger) (*Client, error) {
 	}, nil
 }
 
+var version = "0.1"
 var usrAgent = fmt.Sprintf("SoumuRadioGoClient/%s (%s)", version, runtime.Version())
 
 func (c *Client) newRequest(ctx context.Context, method, spath string, body io.Reader) (*http.Request, error) {
 	u := *c.BaseURL
 	u.Path = path.Join(c.BaseURL.Path, spath)
+
+	fmt.Println(u.String())
 
 	req, err := http.NewRequest(method, u.String(), body)
 	if err != nil {

@@ -29,8 +29,8 @@ type NumOpts struct {
 }
 
 // GetNum is Method for getting number
-func (c *Client) GetNum(ctx context.Context, opt NumOpts) (Num, error) {
-	spath := fmt.Sprintf("/musen/num?ST=%s&OW=%d&OF=%s", opt.ST, opt.OW, OF)
+func (c *Client) GetNum(ctx context.Context, opt NumOpts) (*Num, error) {
+	spath := fmt.Sprintf("/musen/num?ST=%d&OW=%s&OF=%d", opt.ST, opt.OW, OF)
 	req, err := c.newRequest(ctx, "GET", spath, nil)
 	if err != nil {
 		return nil, err
