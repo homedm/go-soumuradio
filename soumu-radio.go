@@ -58,11 +58,12 @@ func NewClient(urlStr string, logger *log.Logger) (*Client, error) {
 var version = "0.1"
 var usrAgent = fmt.Sprintf("SoumuRadioGoClient/%s (%s)", version, runtime.Version())
 
-func (c *Client) newRequest(ctx context.Context, method, spath string, params url.Values, body io.Reader) (*http.Request, error) {
+func (c *Client) newRequest(ctx context.Context, method, spath string, opt requestOptions, body io.Reader) (*http.Request, error) {
 	u := *c.BaseURL
 	u.Path = path.Join(c.BaseURL.Path, spath)
 
 	// Add Query parameters to the URL
+	params := newParams(opt)
 	u.RawQuery = params.Encode() // Escape Query Parameters
 
 	fmt.Println(u.String())
@@ -89,4 +90,14 @@ func decodeBody(resp *http.Response, out interface{}, f *os.File) error {
 
 	decorder := json.NewDecoder(resp.Body)
 	return decorder.Decode(out)
+}
+
+type requestOptions interface {
+	encodeOption() url.Values
+}
+
+func newParams(opts requestOptions) url.Values {
+	params := opts.encodeOption()
+	params.Add("OF", OF)
+	return params
 }

@@ -2,7 +2,6 @@ package soumuradio
 
 import (
 	"context"
-	"fmt"
 	"net/url"
 )
 
@@ -29,16 +28,18 @@ type NumOpts struct {
 	OW string
 }
 
-// GetNum is Method for getting number
-func (c *Client) GetNum(ctx context.Context, opt NumOpts) (*Num, error) {
-	spath := fmt.Sprintf("/musen/num")
-
+func (opt NumOpts) encodeOption() url.Values {
 	params := url.Values{}
 	params.Add("ST", opt.ST)
 	params.Add("OW", opt.OW)
-	params.Add("OF", OF)
+	return params
+}
 
-	req, err := c.newRequest(ctx, "GET", spath, params, nil)
+// GetNum is Method for getting number
+func (c *Client) GetNum(ctx context.Context, opt NumOpts) (*Num, error) {
+	spath := "/musen/num"
+
+	req, err := c.newRequest(ctx, "GET", spath, opt, nil)
 	if err != nil {
 		return nil, err
 	}
