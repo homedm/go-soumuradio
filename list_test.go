@@ -11,7 +11,7 @@ func TestGetNum(t *testing.T) {
 		t.Fatalf("fault to make new client: %v", err)
 	}
 
-	opts := NumOpts{ST: 1, OW: "AT"}
+	opts := NumOpts{ST: "1", OW: "AT"}
 	got, err := cli.GetNum(context.Background(), opts)
 	if err != nil {
 		t.Fatalf("fault to getNum returned err: %v", err)

@@ -24,7 +24,7 @@ type Client struct {
 }
 
 // OF is indicates API Response to JSON format
-const OF = 2
+const OF = "2"
 
 var (
 	// ErrStatusCode is HTTP Response Status code error
@@ -58,9 +58,12 @@ func NewClient(urlStr string, logger *log.Logger) (*Client, error) {
 var version = "0.1"
 var usrAgent = fmt.Sprintf("SoumuRadioGoClient/%s (%s)", version, runtime.Version())
 
-func (c *Client) newRequest(ctx context.Context, method, spath string, body io.Reader) (*http.Request, error) {
+func (c *Client) newRequest(ctx context.Context, method, spath string, params url.Values, body io.Reader) (*http.Request, error) {
 	u := *c.BaseURL
 	u.Path = path.Join(c.BaseURL.Path, spath)
+
+	// Add Query parameters to the URL
+	u.RawQuery = params.Encode() // Escape Query Parameters
 
 	fmt.Println(u.String())
 

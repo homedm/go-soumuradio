@@ -3,6 +3,7 @@ package soumuradio
 import (
 	"context"
 	"fmt"
+	"net/url"
 )
 
 // Num is API Response of getting number
@@ -24,14 +25,20 @@ type MusenInformation struct {
 
 // NumOpts is Options of Number API
 type NumOpts struct {
-	ST int
+	ST string
 	OW string
 }
 
 // GetNum is Method for getting number
 func (c *Client) GetNum(ctx context.Context, opt NumOpts) (*Num, error) {
-	spath := fmt.Sprintf("/musen/num?ST=%d&OW=%s&OF=%d", opt.ST, opt.OW, OF)
-	req, err := c.newRequest(ctx, "GET", spath, nil)
+	spath := fmt.Sprintf("/musen/num")
+
+	params := url.Values{}
+	params.Add("ST", opt.ST)
+	params.Add("OW", opt.OW)
+	params.Add("OF", OF)
+
+	req, err := c.newRequest(ctx, "GET", spath, params, nil)
 	if err != nil {
 		return nil, err
 	}
