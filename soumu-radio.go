@@ -28,8 +28,8 @@ type Client struct {
 	Logger *log.Logger
 }
 
-// OF is indicates API Response to JSON format
-const OF = "2"
+// of is indicates API Response to JSON format
+const of = "2"
 
 var (
 	// ErrStatusCode is HTTP Response Status code error
@@ -103,6 +103,6 @@ type requestOptions interface {
 
 func newParams(opts requestOptions) url.Values {
 	params := opts.encodeOption()
-	params.Add("OF", OF)
+	params.Add("OF", of)
 	return params
 }
