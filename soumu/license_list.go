@@ -1,4 +1,4 @@
-package soumuradio
+package soumu
 
 import (
 	"context"
