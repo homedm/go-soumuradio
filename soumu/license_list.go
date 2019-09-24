@@ -3,6 +3,7 @@ package soumu
 import (
 	"context"
 	"net/url"
+	"time"
 )
 
 // Num is API Response of getting number
@@ -24,8 +25,42 @@ type MusenInformation struct {
 
 // NumOpts is Options of Number API
 type NumOpts struct {
+	// Start count
 	ST string
+	// Type of radio station
 	OW string
+	// only ST=2, Planning of radio station equipment
+	OW2 string
+	// Comprehensive communication station
+	IT string
+	// only ST=1, Prefecture / city
+	HCV string
+	// aim of radio
+	MK string
+	// only ST=1, Communication matters
+	TSNJK string
+	// only ST=1, Types of basic broadcasting
+	KHS string
+	// frequency (start)
+	// kHz: Integer part 10 digits, decimal part 6 digits or less
+	// MHz: Integer part 7 digits, decimal part 9 digits or less
+	// GHz: Integer part 4 digits, decimal part 12 digits or less
+	FF string
+	// frequency (final)
+	TF string
+	// Unit, kHz, MHz, GHz
+	HZ string
+	// name
+	// max length is 100 characters
+	NA string
+	// only ST=1, call sign
+	MA string
+	// only ST=1, Ship aircraft name
+	AS string
+	// licensed date (start)
+	DF time.Time
+	// licensed date (final)
+	DT time.Time
 }
 
 func (opt NumOpts) encodeOption() url.Values {
