@@ -23,134 +23,148 @@ type MusenInformation struct {
 	LastUpdateDate string `json:"lastUpdateDate"`
 }
 
+// RadioStationType is radio station type option variable
 type RadioStationType string
 
 const (
-	// アマチュア局
+	// Amateur is Amateur radio station
 	Amateur RadioStationType = "AT"
-	// 固定局 (個別免許)
+	// FixedStation is Fixed Station
 	FixedStation RadioStationType = "FX"
-	// 特定以外の地上基幹放送局
+	// NonSpecificTerrestrialBroadcastingStation is Non specific Terrestrial Broadcasting Station
 	NonSpecificTerrestrialBroadcastingStation RadioStationType = "BB"
-	// 特定地上基幹放送試験局
+	// SpecifiedGroundBroadcastStation is Specifed Ground Broadcasting Station
 	SpecifiedGroundBroadcastStation RadioStationType = "BC"
-	// 特定以外の地上基幹放送試験局
+	// NonSpecificTerrestrialBroadcastingTestStations is non specific terrestrial broadcasting test station
 	NonSpecificTerrestrialBroadcastingTestStations RadioStationType = "BD"
-	// 特定地上基幹放送試験局
+	// SpecifiedTerrestrialBroadcastingTestStation is specified terrestrial broadcasting station
 	SpecifiedTerrestrialBroadcastingTestStation RadioStationType = "BE"
-	// 地上一般放送局
+	// TerrestrialGeneralBroadcastingStation is terrestrial general broadcasting station
 	TerrestrialGeneralBroadcastingStation RadioStationType = "BG"
-	// 海岸局
+	// CoastStation is coast station.
 	CoastStation RadioStationType = "FC"
-	// 航空局
+	// AeronauticalStation is aeronautical station
 	AeronauticalStation RadioStationType = "FA"
-	// 基地局 (PHS 除く)
+	// BaseStationExcludingPHS is base station excluding PHS
 	BaseStationExcludingPHS RadioStationType = "FB"
-	// 基地局 (PHS)
+	// BaseStationPHS is base station (PHS)
 	BaseStationPHS RadioStationType = "FB_PHS"
-	// 携帯基地局
+	// PortableBaseStation is Portable Base Station
 	PortableBaseStation RadioStationType = "FP"
-	// 無線呼出局
+	// RadioPagingStation is Radio Paging Station
 	RadioPagingStation RadioStationType = "RP"
-	// 陸上移動中継局
+	// LandMobileRelayStation is Land Mobile Relay Station
 	LandMobileRelayStation RadioStationType = "FBR"
-	// 船舶局
+	// ShipStation is Ship Station
 	ShipStation RadioStationType = "MS"
-	// 特定船舶局
+	// SpecifiedShipStation is Specified Ship Station
 	SpecifiedShipStation RadioStationType = "MSS"
-	// 遭難自動通報局
+	// DistressAutomaticReportStation is Distress Automatic Report Station
 	DistressAutomaticReportStation RadioStationType = "DS"
-	// 船上通信局
+	// OnBoardCommunicationStation is On Board Communication Station
 	OnBoardCommunicationStation RadioStationType = "MB"
-	// 航空機局
+	// AircraftStation is Aircraft Station
 	AircraftStation RadioStationType = "MA"
-	// 陸上移動局
+	// LandMobileStation is Land Mobile Station
 	LandMobileStation RadioStationType = "ML"
-	// 携帯局
+	// PortableStation is Portable Station
 	PortableStation RadioStationType = "MP"
-	// 移動局
+	// MobileStation is Mobile Station
 	MobileStation RadioStationType = "MO"
-	// 無線航行陸上局
+	// RadionavigationLandStation is Radio Navigation Land Station
 	RadionavigationLandStation RadioStationType = "RL"
-	// 無線航行移動局
+	// RadionavigationMobileStation is Radio Navigation Mobile Station
 	RadionavigationMobileStation RadioStationType = "RO"
-	// 無線標定陸上局
-	RadiolocationLandStation RadioStationType = "LR"
-	// 無線標定移動局
-	RadiolocationMobileStation RadioStationType = "MR"
-	// 無線標識局
+	// RadioLocationLandStation is Radio Location Land Station
+	RadioLocationLandStation RadioStationType = "LR"
+	// RadioLocationMobileStation is Radio Location Mobile Station
+	RadioLocationMobileStation RadioStationType = "MR"
+	// RadiobeaconStation is Radiobeacon Station
 	RadiobeaconStation RadioStationType = "RB"
-	// 地球局
+	// EarthStation is Earth Station
 	EarthStation RadioStationType = "TC"
-	// 海岸地球局
+	// CoastEarthStation is Coast Earth Station
 	CoastEarthStation RadioStationType = "TI"
-	// 航空地球局
+	// AeronauticalEarthStation is Aeronautical Earth Station
 	AeronauticalEarthStation RadioStationType = "TB"
-	// 携帯基地地球局
+	// PortableBaseEarthStation is Portable Base Earth Station
 	PortableBaseEarthStation RadioStationType = "TYP"
-	// 船舶地球局
+	// ShipEarthStation is Ship Earth Station
 	ShipEarthStation RadioStationType = "TG"
-	// 航空機地球局
+	// AircraftEarthStation is Aircraft Earth Station
 	AircraftEarthStation RadioStationType = "TJ"
-	// 携帯移動地球局
+	// PortableMobileEarthStation is Portable Mobile Earth Station
 	PortableMobileEarthStation RadioStationType = "TUP"
-	// 宇宙局
+	// SpaceStation is Space Station
 	SpaceStation RadioStationType = "ME"
-	// 人工衛星局
+	// ArtificialSatelliteStation is Artifical Satellite Station
 	ArtificialSatelliteStation RadioStationType = "EKT"
-	// 衛星基幹放送局
+	// SatelliteBasicBroadcasting is Satellite Basic Broadcasting
 	SatelliteBasicBroadcasting RadioStationType = "EV"
-	// 衛星基幹放送試験局
+	// SatelliteBasicBroadcastingExperimentalTestStation is Satellite Basic
+	// Broadcasting Experimental Test Station
 	SatelliteBasicBroadcastingExperimentalTestStation = "EBE"
-	// 非常局
+	// EmergencyTrafficStation is Emergency Traffic Station
 	EmergencyTrafficStation RadioStationType = "EM"
-	// 実験試験局
+	// ExperimentalStation is Experimental Station
 	ExperimentalStation RadioStationType = "EX"
-	// 特定実験試験局
+	// SpecificExperimentalStation is Specific Experimental Station
 	SpecificExperimentalStation RadioStationType = "EXT"
-	// 実用化試験局 DVT
+	// DevelopmentTestStation is Development Test Station
 	DevelopmentTestStation RadioStationType = "DVT"
-	// 簡易無線局 (パーソナル無線を除く簡易無線局)
+	// SimplicityRadioStationExcludingPersonal is Simplicity Radio Station
+	// Excluding Personal Radio
 	SimplicityRadioStationExcludingPersonal RadioStationType = "CR"
-	// 簡易無線局(パーソナル無線) CR_PA
-	SimplicityRadioStationPersonal RadioStationType = "CR"
-	// 構内無線局
+	// SimplicityRadioStationPersonal is Simplicity Radio Statoin Personal
+	SimplicityRadioStationPersonal RadioStationType = "CR_PA"
+	// PremisesRadioStation is Premises Radio Station
 	PremisesRadioStation RadioStationType = "LO"
-	// 気象援助局
+	// MeteorologicalAidsStation is Meteorological Aids Station
 	MeteorologicalAidsStation RadioStationType = "SM"
-	// 標準周波数局
+	// StandardFrequencyStation is Standard Frequency Station
 	StandardFrequencyStation RadioStationType = "SS"
-	// 特別業務の局
+	// StationInTheSpecialService is Station In The Special Service Station
 	StationInTheSpecialService RadioStationType = "SP"
-	// 固定局(包括免許)
+	// FixedStationBlanketLicense is Fixed Station (Blanket License)
 	FixedStationBlanketLicense RadioStationType = "FX_H"
-	// 陸上移動局(包括免許)
+	// LandMobileStationBlanketLicense is Land Mobile Station (Blanket License)
 	LandMobileStationBlanketLicense RadioStationType = "ML_H"
-	// 携帯局(包括免許)
+	// PortableStationBlanketLicense is Portable Station (Blanket License)
 	PortableStationBlanketLicense RadioStationType = "MP_H"
-	// 地球局(包括免許)
+	// EarthStationBlanketLicense is Earth Station (Blanket License)
 	EarthStationBlanketLicense RadioStationType = "TC_H"
-	// 携帯移動地球局(包括免許)
+	// PortableMobileEarthStationBlanketLicense is Portable Mobile Earth Staion (Blanket License)
 	PortableMobileEarthStationBlanketLicense RadioStationType = "TUP_H"
-	// 基地局(包括免許) FB_H
+	// BaseStationExcludingBlanketLicense is Base Station Excluding (Blanket License)
 	BaseStationExcludingBlanketLicense RadioStationType = "FB_H"
 )
 
-// 所轄総合通信局
+// ComprehensiveCommunicationStation is Comprehensive Communication Station
 type ComprehensiveCommunicationStation string
 
 const (
+	// Hokkaido is Hokkaido Comprehensive Communication Station
 	Hokkaido ComprehensiveCommunicationStation = "J"
-	Tohoku   ComprehensiveCommunicationStation = "I"
-	Kanto    ComprehensiveCommunicationStation = "A"
-	Shinetu  ComprehensiveCommunicationStation = "B"
+	// Tohoku is Tohoku Comprehensive Communication Station
+	Tohoku ComprehensiveCommunicationStation = "I"
+	// Kanto is Kanto Comprehensive Communication Station
+	Kanto ComprehensiveCommunicationStation = "A"
+	// Shinetu is Shinetu Comprehensive Communication Station
+	Shinetu ComprehensiveCommunicationStation = "B"
+	// Hokuriku is Hokuriku Comprehensive Communication Station
 	Hokuriku ComprehensiveCommunicationStation = "D"
-	Tokai    ComprehensiveCommunicationStation = "C"
-	Kinki    ComprehensiveCommunicationStation = "E"
-	Chugoku  ComprehensiveCommunicationStation = "F"
-	Shikoku  ComprehensiveCommunicationStation = "G"
-	Kyushu   ComprehensiveCommunicationStation = "H"
-	Okinawa  ComprehensiveCommunicationStation = "O"
+	// Tokai is Tokai Comprehensive Communication Station
+	Tokai ComprehensiveCommunicationStation = "C"
+	// Kinki is Kinki Comprehensive Communication Station
+	Kinki ComprehensiveCommunicationStation = "E"
+	// Chugoku is Chugoku Comprehensive Communication Station
+	Chugoku ComprehensiveCommunicationStation = "F"
+	// Shikoku is Shikoku Comprehensive Communication Station
+	Shikoku ComprehensiveCommunicationStation = "G"
+	// Kyushu is Kyushu Comprehensive Communication Station
+	Kyushu ComprehensiveCommunicationStation = "H"
+	// Okinawa is Okinawa Comprehensive Communication Station
+	Okinawa ComprehensiveCommunicationStation = "O"
 )
 
 // NumOpts is Options of Number API

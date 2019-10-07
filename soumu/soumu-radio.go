@@ -2,7 +2,7 @@
 このサービスは、総務省 電波利用ホームページのWeb-API 機能を利用して取得した情報をもとに作成しているが、サービスの内容は総務省によって保証されたものではない
 */
 
-// Package soumuradio is a simple client to consume radio station etc. information search API of Ministry of Internal Affairs and Communications in Japan.
+// Package soumu is a simple client to consume radio station etc. information search API of Ministry of Internal Affairs and Communications in Japan.
 package soumu
 
 import (
