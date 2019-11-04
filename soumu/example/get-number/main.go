@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"os"
 
@@ -15,10 +14,10 @@ func main() {
 	}
 
 	opts := soumu.NewNumOptions(soumu.License, soumu.Amateur)
-	result, err := cli.GetNum(context.Background(), opts)
+	result, err := cli.GetNum(nil, opts)
 	if err != nil {
 		os.Exit(1)
 	}
 
-	fmt.Println(result)
+	fmt.Printf("%+v", *result)
 }

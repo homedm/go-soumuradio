@@ -62,11 +62,15 @@ func (c *Client) newRequest(ctx context.Context, method, spath string, opt reque
 	params := newParams(opt)
 	u.RawQuery = params.Encode() // Escape Query Parameters
 
-	fmt.Println(u.String())
+	logger.Debugf("request URL: ", u.String())
 
 	req, err := http.NewRequest(method, u.String(), body)
 	if err != nil {
 		return nil, err
+	}
+
+	if ctx == nil {
+		ctx = context.Background()
 	}
 
 	req = req.WithContext(ctx)
