@@ -16,7 +16,7 @@ func checkStatusCode(res *http.Response) error {
 	if sc == 400 {
 		var errJSON ErrorBody
 		if err := decodeBody(res, &errJSON, nil); err != nil {
-			return err
+			return HTTPStatusError(sc)
 		}
 		for _, errArr := range errJSON.Err {
 			logger.Warnf("Invalid Request:", errArr.ErrMsg)
