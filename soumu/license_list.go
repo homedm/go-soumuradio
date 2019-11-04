@@ -19,9 +19,8 @@ func (c *Client) GetNum(ctx context.Context, opt NumOpts) (*Num, error) {
 		return nil, err
 	}
 
-	// check status code
-	if res.StatusCode < 200 || 300 <= res.StatusCode {
-		return nil, ErrStatusCode
+	if err = checkStatusCode(res); err != nil {
+		return nil, err
 	}
 
 	var num Num

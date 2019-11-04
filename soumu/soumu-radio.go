@@ -7,14 +7,10 @@ package soumu
 
 import (
 	"context"
-	"encoding/json"
-	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
-	"os"
 	"path"
 	"runtime"
 )
@@ -27,11 +23,6 @@ type Client struct {
 
 // of is indicates API Response to JSON format
 const of = "2"
-
-var (
-	// ErrStatusCode is HTTP Response Status code error
-	ErrStatusCode = errors.New("HTTP Response Status error")
-)
 
 // NewClient is constructer
 // 必須の情報が与えられているか、期待するものかをチェックする
@@ -78,18 +69,6 @@ func (c *Client) newRequest(ctx context.Context, method, spath string, opt reque
 	req.Header.Set("User-Agent", usrAgent)
 
 	return req, nil
-}
-
-func decodeBody(resp *http.Response, out interface{}, f *os.File) error {
-	defer resp.Body.Close()
-
-	if f != nil {
-		resp.Body = ioutil.NopCloser(io.TeeReader(resp.Body, f))
-		defer f.Close()
-	}
-
-	decorder := json.NewDecoder(resp.Body)
-	return decorder.Decode(out)
 }
 
 type requestOptions interface {
