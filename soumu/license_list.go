@@ -10,6 +10,7 @@ func (c *Client) GetNum(ctx context.Context, opt NumOpts) (*Num, error) {
 
 	req, err := c.newRequest(ctx, "GET", spath, opt, nil)
 	if err != nil {
+		logger.Warnf("try URL: ", req.URL)
 		return nil, err
 	}
 

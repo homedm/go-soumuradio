@@ -1,6 +1,6 @@
 package soumu
 
-// LicenseSortingKey indicates sorting key
+// SortingKey indicates sorting key
 type SortingKey int
 
 const (

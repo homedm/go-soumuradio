@@ -2,6 +2,7 @@ package soumu
 
 import (
 	"net/url"
+	"strconv"
 	"time"
 )
 
@@ -71,9 +72,10 @@ type NumOpts struct {
 }
 
 // NewNumOptions returns an initialized NumOpts structure.
-func NewNumOptions(st TargetInfo) NumOpts {
+func NewNumOptions(st TargetInfo, ow RadioStationType) NumOpts {
 	opts := NumOpts{}
 	opts.ST = st
+	opts.OW = ow
 	opts.SC = 1
 	opts.DC = 3
 	return opts
@@ -81,7 +83,7 @@ func NewNumOptions(st TargetInfo) NumOpts {
 
 func (opt NumOpts) encodeOption() url.Values {
 	params := url.Values{}
-	params.Add("ST", string(opt.ST))
+	params.Add("ST", strconv.Itoa(int(opt.ST)))
 	if opt.OW != "" {
 		params.Add("OW", string(opt.OW))
 	}

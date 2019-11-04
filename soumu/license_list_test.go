@@ -6,12 +6,12 @@ import (
 )
 
 func TestGetNum(t *testing.T) {
-	cli, err := NewClient("", nil)
+	cli, err := NewClient("")
 	if err != nil {
 		t.Fatalf("fault to make new client: %v", err)
 	}
 
-	opts := NumOpts{ST: 1, OW: Amateur}
+	opts := NewNumOptions(License, Amateur)
 	got, err := cli.GetNum(context.Background(), opts)
 	if err != nil {
 		t.Fatalf("fault to getNum returned err: %v", err)
