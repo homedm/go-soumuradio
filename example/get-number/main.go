@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/tomato3713/soumu-radio-api/soumu"
+	"github.com/tomato3713/go-soumuradio/soumu"
 )
 
 func main() {
