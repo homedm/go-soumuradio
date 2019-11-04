@@ -6,25 +6,14 @@ import (
 	"time"
 )
 
-// Num is API Response of getting number
-type Num struct {
-	Musen            Musen            `json:"musen"`
-	MusenInformation MusenInformation `json:"musenInformation"`
-}
-
-// Musen is record information of JSON Response
-type Musen struct {
-	Count string `json:"count"`
-}
-
-// MusenInformation is header JSON Response
-type MusenInformation struct {
-	TotalCount     string `json:"totalCount"`
-	LastUpdateDate string `json:"lastUpdateDate"`
-}
-
-// NumOpts is Options of Number API
-type NumOpts struct {
+// ListOpts is Options of List Information API
+type ListOpts struct {
+	// add detail informations
+	DA bool
+	// start count
+	SC int
+	// DC is data count
+	DC int
 	// ST is station target
 	ST TargetInfo
 	// OW is Type of radio station
@@ -63,18 +52,27 @@ type NumOpts struct {
 	DF time.Time
 	// licensed date (final)
 	DT time.Time
+	// SK is Sorting Key
+	SK SortingKey
 }
 
-// NewNumOptions returns an initialized NumOpts structure.
-func NewNumOptions(st TargetInfo, ow RadioStationType) NumOpts {
-	opts := NumOpts{}
+// NewListOptions returns an initialized ListOpts structure.
+func NewListOptions(st TargetInfo, ow RadioStationType) ListOpts {
+	opts := ListOpts{}
 	opts.ST = st
 	opts.OW = ow
+	opts.SC = 1
+	opts.DC = 3
 	return opts
 }
 
-func (opt NumOpts) encodeOption() url.Values {
+func (opt ListOpts) encodeOption() url.Values {
 	params := url.Values{}
+	if opt.DA {
+		params.Add("DA", "1")
+	} else {
+		params.Add("DA", "0")
+	}
 	params.Add("ST", strconv.Itoa(int(opt.ST)))
 	if opt.OW != "" {
 		params.Add("OW", string(opt.OW))

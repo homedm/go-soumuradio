@@ -23,6 +23,7 @@ type Client struct {
 
 // of is indicates API Response to JSON format
 const of = "2"
+const encoding = "1"
 
 // NewClient is constructer
 // 必須の情報が与えられているか、期待するものかをチェックする
@@ -78,5 +79,6 @@ type requestOptions interface {
 func newParams(opts requestOptions) url.Values {
 	params := opts.encodeOption()
 	params.Add("OF", of)
+	params.Add("MC", encoding)
 	return params
 }
