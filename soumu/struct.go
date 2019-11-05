@@ -1,6 +1,6 @@
 package soumu
 
-// Num is API Response of getting number
+// Num is API Response for getting number
 type Num struct {
 	MusenInformation MusenInformation `json:"musenInformation"`
 	Musen            Musen            `json:"musen"`
@@ -27,6 +27,7 @@ type Musen struct {
 	DetailInfo DetailInfo `json:"detailInfo"`
 }
 
+// ListInfo is the struct for List API.
 type ListInfo struct {
 	No   string `json:"no"`
 	Name string `json:"name"`
@@ -42,7 +43,7 @@ type ListInfo struct {
 	RegistrationDate string `json:"registrationDate"`
 }
 
-// DetailInfo is the struct of List acquistion API
+// DetailInfo is the struct for List acquistion API
 type DetailInfo struct {
 	Name                  string `json:"name"`
 	Note                  string `json:"note"`

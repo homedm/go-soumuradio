@@ -7,14 +7,17 @@ import (
 
 var logger *log.Logger
 
+// DebugEnable enable debugging
 func DebugEnable() {
 	logger = log.New(os.Stdout, "[go-soumuradio]", log.LstdFlags)
 }
 
+// SetLogger set original logger
 func SetLogger(l *log.Logger) {
 	logger = l
 }
 
+// LogDisable disable debugging
 func LogDisable() {
 	logger = nil
 }
