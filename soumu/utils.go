@@ -19,7 +19,7 @@ func checkStatusCode(res *http.Response) error {
 			return HTTPStatusError(sc)
 		}
 		for _, errArr := range errJSON.Err {
-			logger.Warnf("Invalid Request:", errArr.ErrMsg)
+			logf("invalid Request: %v", errArr.ErrMsg)
 		}
 	}
 	return HTTPStatusError(sc)

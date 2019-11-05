@@ -5,27 +5,23 @@ import (
 	"os"
 )
 
-type Logger interface {
-	Warnf(string, ...interface{})
-	Debugf(string, ...interface{})
+var logger *log.Logger
+
+func DebugEnable() {
+	logger = log.New(os.Stdout, "[go-soumuradio]", log.LstdFlags)
 }
 
-var logger Logger = &BasicLogger{
-	Logger: log.New(os.Stderr, "", log.LstdFlags),
-}
-
-func SetLogger(l Logger) {
+func SetLogger(l *log.Logger) {
 	logger = l
 }
 
-type BasicLogger struct {
-	Logger *log.Logger
+func LogDisable() {
+	logger = nil
 }
 
-func (bl *BasicLogger) Warnf(format string, v ...interface{}) {
-	bl.Logger.Printf(format, v...)
-}
-
-func (bl *BasicLogger) Debugf(format string, v ...interface{}) {
-	// suppress debug logs
+func logf(format string, v ...interface{}) {
+	if logger == nil {
+		return
+	}
+	logger.Printf(format, v...)
 }

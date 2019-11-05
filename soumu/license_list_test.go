@@ -6,6 +6,7 @@ import (
 )
 
 func TestGetNum(t *testing.T) {
+	DebugEnable()
 	cli, err := NewClient("")
 	if err != nil {
 		t.Fatalf("fault to make new client: %v", err)
