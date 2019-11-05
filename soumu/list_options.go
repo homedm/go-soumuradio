@@ -56,13 +56,25 @@ type ListOpts struct {
 	SK SortingKey
 }
 
-// NewListOptions returns an initialized ListOpts structure.
-func NewListOptions(st TargetInfo, ow RadioStationType) ListOpts {
+// NewLicenseListOptions returns an initialized ListOpts structure.
+func NewLicenseListOptions(st TargetInfo, ow RadioStationType, da bool) ListOpts {
 	opts := ListOpts{}
 	opts.ST = st
-	opts.OW = ow
+	opts.DA = da
 	opts.SC = 1
 	opts.DC = 3
+	opts.OW = ow
+	return opts
+}
+
+// NewRegistrationListOptions returns an initialized ListOpts structure.
+func NewRegistrationListOptions(st TargetInfo, ow2 string, da bool) ListOpts {
+	opts := ListOpts{}
+	opts.ST = st
+	opts.DA = da
+	opts.SC = 1
+	opts.DC = 3
+	opts.OW2 = ow2
 	return opts
 }
 
