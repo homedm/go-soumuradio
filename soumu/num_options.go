@@ -6,23 +6,6 @@ import (
 	"time"
 )
 
-// Num is API Response of getting number
-type Num struct {
-	Musen            Musen            `json:"musen"`
-	MusenInformation MusenInformation `json:"musenInformation"`
-}
-
-// Musen is record information of JSON Response
-type Musen struct {
-	Count string `json:"count"`
-}
-
-// MusenInformation is header JSON Response
-type MusenInformation struct {
-	TotalCount     string `json:"totalCount"`
-	LastUpdateDate string `json:"lastUpdateDate"`
-}
-
 // NumOpts is Options of Number API
 type NumOpts struct {
 	// ST is station target
