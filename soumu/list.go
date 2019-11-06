@@ -4,13 +4,13 @@ import (
 	"context"
 )
 
-// GetNum is Method for getting number
-func (c *Client) GetNum(ctx context.Context, opt NumOpts) (*Num, error) {
-	spath := "/musen/num"
+// GetList is Method for getting number
+func (c *Client) GetList(ctx context.Context, opt ListOpts) (*Lists, error) {
+	spath := "/musen/list"
 
 	req, err := c.newRequest(ctx, "GET", spath, opt, nil)
 	if err != nil {
-		logger.Warnf("try URL: ", req.URL)
+		logf("try URL: %v", req.URL)
 		return nil, err
 	}
 
@@ -23,10 +23,10 @@ func (c *Client) GetNum(ctx context.Context, opt NumOpts) (*Num, error) {
 		return nil, err
 	}
 
-	var num Num
-	if err := decodeBody(res, &num, nil); err != nil {
+	var lists Lists
+	if err := decodeBody(res, &lists, nil); err != nil {
 		return nil, err
 	}
 
-	return &num, nil
+	return &lists, nil
 }

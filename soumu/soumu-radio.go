@@ -54,7 +54,7 @@ func (c *Client) newRequest(ctx context.Context, method, spath string, opt reque
 	params := newParams(opt)
 	u.RawQuery = params.Encode() // Escape Query Parameters
 
-	logger.Debugf("request URL: ", u.String())
+	logf("request URL: %v", u.String())
 
 	req, err := http.NewRequest(method, u.String(), body)
 	if err != nil {
@@ -64,10 +64,16 @@ func (c *Client) newRequest(ctx context.Context, method, spath string, opt reque
 	if ctx == nil {
 		ctx = context.Background()
 	}
-
 	req = req.WithContext(ctx)
 
 	req.Header.Set("User-Agent", usrAgent)
+
+	// for debug, output proxy setting
+	proxy := "no"
+	if proxyURL, _ := http.ProxyFromEnvironment(req); proxyURL != nil {
+		proxy = proxyURL.String()
+	}
+	logf("request proxy: %v", proxy)
 
 	return req, nil
 }
