@@ -16,12 +16,19 @@ func checkStatusCode(res *http.Response) error {
 	if sc == 400 {
 		var errJSON ErrorBody
 		if err := decodeBody(res, &errJSON, nil); err != nil {
-			return HTTPStatusError(sc)
+			logf("invalid Request, but cannot decode JSON Response: %v", err)
 		}
 		for _, errArr := range errJSON.Err {
 			logf("invalid Request: %v", errArr.ErrMsg)
 		}
+		return InvalidRequestError()
 	}
+
+	if sc == 500 {
+		logf("system error")
+		return SystemError()
+	}
+
 	return HTTPStatusError(sc)
 }
 
