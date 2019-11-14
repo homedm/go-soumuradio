@@ -21,7 +21,7 @@ func checkStatusCode(res *http.Response) error {
 		for _, errArr := range errJSON.Err {
 			logf("invalid Request: %v", errArr.ErrMsg)
 		}
-		return InvalidRequestError()
+		return InvalidRequestError(errJSON)
 	}
 
 	if sc == 500 {
