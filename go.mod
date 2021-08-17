@@ -1,8 +1,8 @@
 module github.com/tomato3713/go-soumuradio/soumu
 
-go 1.12
+go 1.16
 
 require (
-	github.com/dnaeon/go-vcr v1.2.0 // indirect
-	github.com/dnaeon/go-vcr/v2 v2.0.1 // indirect
+	github.com/dnaeon/go-vcr v1.2.0
+	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
