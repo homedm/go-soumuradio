@@ -37,13 +37,13 @@ if err != nil {
 }
 
 opts := soumu.NewNumOptions(soumu.License, soumu.Amateur)
-result, err := cli.GetNum(nil, opts)
+result, err := cli.GetTotalCount(nil, opts)
 if err != nil {
     os.Exit(1)
 }
 
-fmt.Printf("%+v", *result)
-// -> {Musen:{Count:404542} MusenInformation:{TotalCount:404542 LastUpdateDate:2019-11-03}}
+fmt.Printf("Amateur Radio TotalCount is %d\n", result)
+// example output -> Amateur Radio TotalCount is 393183
 ```
 
 ### Logger
