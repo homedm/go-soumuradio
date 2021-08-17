@@ -20,6 +20,14 @@ go get github.com/tomato3713/go-soumuradio
 import github.com/tomato3713/go-soumuradio/soumu
 ```
 
+## Example
+```sh
+# List API Example
+go run example/get-list/main.go
+# Number API Example
+go run example/get-number/main.go
+```
+
 ### Number acquisition API
 
 ```go
