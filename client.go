@@ -27,10 +27,8 @@ const encoding = "1"
 
 // NewClient is constructer
 // 必須の情報が与えられているか、期待するものかをチェックする
-func NewClient(urlStr string) (*Client, error) {
-	if urlStr == "" {
-		urlStr = "https://www.tele.soumu.go.jp"
-	}
+func NewClient(cli *http.Client) (*Client, error) {
+	urlStr := "https://www.tele.soumu.go.jp"
 
 	parsedURL, err := url.ParseRequestURI(urlStr)
 	if err != nil {
@@ -39,7 +37,7 @@ func NewClient(urlStr string) (*Client, error) {
 
 	return &Client{
 		BaseURL:    parsedURL,
-		HTTPClient: http.DefaultClient,
+		HTTPClient: cli,
 	}, nil
 }
 

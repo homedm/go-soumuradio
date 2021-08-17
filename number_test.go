@@ -2,32 +2,55 @@ package soumu
 
 import (
 	"context"
+	"log"
+	"net/http"
 	"testing"
+
+	"github.com/dnaeon/go-vcr/recorder"
 )
 
-func TestGetNum(t *testing.T) {
-	DebugEnable()
-	cli, err := NewClient("")
+func TestGetTotalCount(t *testing.T) {
+	r, err := recorder.New("fixtures/soumuradio")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer r.Stop()
+
+	cfg := &http.Client{
+		Transport: r,
+	}
+
+	cli, err := NewClient(cfg)
 	if err != nil {
 		t.Fatalf("fault to make new client: %v", err)
 	}
 
 	opts := NewNumOptions(License, Amateur)
-	got, err := cli.GetNum(context.Background(), opts)
+	_, err = cli.GetTotalCount(context.Background(), opts)
 	if err != nil {
-		t.Fatalf("fault to getNum returned err: %v", err)
+		t.Fatalf("fault to GetTotalCount returned err: %v", err)
+	}
+}
+
+func TestGetLastUpdateDate(t *testing.T) {
+	r, err := recorder.New("fixtures/soumuradio")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer r.Stop()
+
+	cfg := &http.Client{
+		Transport: r,
 	}
 
-	want := &Num{
-		Musen: Musen{
-			Count: "1200",
-		},
-		MusenInformation: MusenInformation{
-			TotalCount:     "1200",
-			LastUpdateDate: "2019/02/12",
-		},
+	cli, err := NewClient(cfg)
+	if err != nil {
+		t.Fatalf("fault to make new client: %v", err)
 	}
-	if got != want {
-		t.Fatalf("want %v, but %v:", want, got)
+
+	opts := NewNumOptions(License, Amateur)
+	_, err = cli.GetLastUpdateDate(context.Background(), opts)
+	if err != nil {
+		t.Fatalf("fault to GetLastUpdateDate returned err: %v", err)
 	}
 }

@@ -1,0 +1,44 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - SoumuRadioGoClient/0.1 (go1.16.5)
+    url: https://www.tele.soumu.go.jp/musen/num?MC=1&OF=2&OW=AT&ST=1
+    method: GET
+  response:
+    body: |
+      {"musen":{"count":"383498"},"musenInformation":{"totalCount":"383498","lastUpdateDate":"2021-08-15"}}
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=0,must-revalidate
+      Content-Length:
+      - "102"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Tue, 17 Aug 2021 13:40:28 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - Apache
+      Set-Cookie:
+      - JSESSIONID=DECB6DC67CDA8565C1CEE4BD3EB73F8E; Path=/musen; HttpOnly; Secure
+      - citrix_ns_id=zkMBP3fq1hUEsugNHZeBrViNnVQ0000; Domain=.tele.soumu.go.jp; Path=/;
+        HttpOnly
+      Strict-Transport-Security:
+      - max-age=10886400
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 200
+    code: 200
+    duration: ""
