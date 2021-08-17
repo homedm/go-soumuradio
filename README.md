@@ -6,7 +6,6 @@ Japan
 API Document Link: [Web-API機能（無線局等情報検索）について](https://www.tele.soumu.go.jp/j/musen/webapi/)
 
 [![GoDev][godev-image]][godev-url]
-[![Actions Status][actions-image]][actions-url]
 
 ## Install
 
