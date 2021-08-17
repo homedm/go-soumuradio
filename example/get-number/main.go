@@ -5,16 +5,16 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/tomato3713/go-soumuradio/soumu"
+	"github.com/tomato3713/soumuradio"
 )
 
 func main() {
-	cli, err := soumu.NewClient(http.DefaultClient)
+	cli, err := soumuradio.NewClient(http.DefaultClient)
 	if err != nil {
 		os.Exit(1)
 	}
 
-	opts := soumu.NewNumOptions(soumu.License, soumu.Amateur)
+	opts := soumuradio.NewNumOptions(soumuradio.License, soumuradio.Amateur)
 	result, err := cli.GetTotalCount(nil, opts)
 	if err != nil {
 		os.Exit(1)

@@ -3,7 +3,7 @@
 */
 
 // Package soumu is a simple client to consume radio station etc. information search API of Ministry of Internal Affairs and Communications in Japan.
-package soumu
+package soumuradio
 
 import (
 	"context"

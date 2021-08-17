@@ -1,4 +1,4 @@
-module github.com/tomato3713/soumu
+module github.com/tomato3713/soumuradio
 
 go 1.16
 

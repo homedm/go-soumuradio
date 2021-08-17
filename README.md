@@ -1,4 +1,4 @@
-# go-soumuradio
+# soumuradio
 
 soumuradio is a Go client library for accessing the radio station etc.
 information search API of Ministry of Internal Affairs and Communications in
@@ -9,7 +9,7 @@ API Document Link: [Web-API機能（無線局等情報検索）について](htt
 ## Install
 
 ```sh
-go get github.com/tomato3713/go-soumuradio
+go get github.com/tomato3713/soumuradio
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ go get github.com/tomato3713/go-soumuradio
 ### Import
 
 ```sample01.go
-import github.com/tomato3713/go-soumuradio/soumu
+import github.com/tomato3713/soumuradio
 ```
 
 ## Example
@@ -31,12 +31,12 @@ go run example/get-number/main.go
 ### Number acquisition API
 
 ```go
-cli, err := soumu.NewClient("")
+cli, err := soumuradio.NewClient("")
 if err != nil {
     os.Exit(1)
 }
 
-opts := soumu.NewNumOptions(soumu.License, soumu.Amateur)
+opts := soumuradio.NewNumOptions(soumuradio.License, soumuradio.Amateur)
 result, err := cli.GetTotalCount(nil, opts)
 if err != nil {
     os.Exit(1)
@@ -51,15 +51,15 @@ fmt.Printf("Amateur Radio TotalCount is %d\n", result)
 You can set debug option if you print out library logs for debug.
 
 ```go
-soumu.EnableDebug()
+soumuradio.EnableDebug()
 // Print out debug logs like under line
-// [go-soumuradio]2019/11/05 15:32:52 request URL: https://www.tele.soumu.go.jp/musen/num?MC=1&OF=2&OW=AT&ST=1
+// [go-soumuradio]2019/11/05 15:32:52 request URL: https://www.tele.soumuradio.go.jp/musen/num?MC=1&OF=2&OW=AT&ST=1
 ```
 
 If you use your original logger, you can set it.
 
 ```go
-soumu.SetLogger(log.New(os.Stdout, "[myapp]", log.LstdFlags)
+soumuradio.SetLogger(log.New(os.Stdout, "[myapp]", log.LstdFlags)
 ```
 
 ## Note

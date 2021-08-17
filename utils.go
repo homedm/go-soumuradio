@@ -1,4 +1,4 @@
-package soumu
+package soumuradio
 
 import (
 	"encoding/json"

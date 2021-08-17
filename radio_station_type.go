@@ -1,4 +1,4 @@
-package soumu
+package soumuradio
 
 // RadioStationType is radio station type option variable
 type RadioStationType string

@@ -1,4 +1,4 @@
-package soumu
+package soumuradio
 
 // SortingKey indicates sorting key
 type SortingKey int

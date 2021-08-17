@@ -1,4 +1,4 @@
-package soumu
+package soumuradio
 
 // Num is API Response for getting number
 type Num struct {

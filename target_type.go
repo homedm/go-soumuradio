@@ -1,4 +1,4 @@
-package soumu
+package soumuradio
 
 // TargetInfo indicates what information is searched
 // set ST

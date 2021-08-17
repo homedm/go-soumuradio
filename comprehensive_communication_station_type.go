@@ -1,4 +1,4 @@
-package soumu
+package soumuradio
 
 // ComprehensiveCommunicationStation is Comprehensive Communication Station
 type ComprehensiveCommunicationStation string
