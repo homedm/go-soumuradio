@@ -1,10 +1,12 @@
 # soumuradio
-
 soumuradio is a Go client library for accessing the radio station etc.
 information search API of Ministry of Internal Affairs and Communications in
 Japan
 
 API Document Link: [Web-API機能（無線局等情報検索）について](https://www.tele.soumu.go.jp/j/musen/webapi/)
+
+[![GoDev][godev-image]][godev-url]
+[![Actions Status][actions-image]][actions-url]
 
 ## Install
 
@@ -66,4 +68,7 @@ soumuradio.SetLogger(log.New(os.Stdout, "[myapp]", log.LstdFlags)
 
 このサービスは、総務省 電波利用ホームページのWeb-API 機能を利用して取得した情報
 をもとに作成しているが、サービスの内容は総務省によって保証されたものではない
+
+[godev-image]: https://pkg.go.dev/badge/github.com/tomato3713/soumuradio
+[godev-url]: https://pkg.go.dev/github.com/tomato3713/soumuradio
 
