@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/dnaeon/go-vcr/recorder"
+	"github.com/tomato3713/soumuradio/radiotype"
 )
 
 func TestGetTotalCount(t *testing.T) {
@@ -25,7 +26,7 @@ func TestGetTotalCount(t *testing.T) {
 		t.Fatalf("fault to make new client: %v", err)
 	}
 
-	opts := NewNumOptions(License, Amateur)
+	opts := NewNumOptions(License, radiotype.Amateur)
 	_, err = cli.GetTotalCount(context.Background(), opts)
 	if err != nil {
 		t.Fatalf("fault to GetTotalCount returned err: %v", err)
@@ -48,7 +49,7 @@ func TestGetLastUpdateDate(t *testing.T) {
 		t.Fatalf("fault to make new client: %v", err)
 	}
 
-	opts := NewNumOptions(License, Amateur)
+	opts := NewNumOptions(License, radiotype.Amateur)
 	_, err = cli.GetLastUpdateDate(context.Background(), opts)
 	if err != nil {
 		t.Fatalf("fault to GetLastUpdateDate returned err: %v", err)

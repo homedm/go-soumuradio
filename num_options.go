@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/tomato3713/soumuradio/prefecture"
+	"github.com/tomato3713/soumuradio/radiotype"
 )
 
 // NumOpts is Options of Number API
@@ -13,7 +14,7 @@ type NumOpts struct {
 	// ST is station target
 	ST TargetInfo
 	// OW is Type of radio station
-	OW RadioStationType
+	OW radiotype.RadioStationType
 	// OW2 is only ST=2, Planning of radio station equipment
 	// TODO: make structure
 	OW2 string
@@ -51,7 +52,7 @@ type NumOpts struct {
 }
 
 // NewNumOptions returns an initialized NumOpts structure.
-func NewNumOptions(st TargetInfo, ow RadioStationType) NumOpts {
+func NewNumOptions(st TargetInfo, ow radiotype.RadioStationType) NumOpts {
 	opts := NumOpts{}
 	opts.ST = st
 	opts.OW = ow

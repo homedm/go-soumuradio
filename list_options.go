@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/tomato3713/soumuradio/prefecture"
+	"github.com/tomato3713/soumuradio/radiotype"
 )
 
 // ListOpts is Options of List Information API
@@ -19,7 +20,7 @@ type ListOpts struct {
 	// ST is station target
 	ST TargetInfo
 	// OW is Type of radio station
-	OW RadioStationType
+	OW radiotype.RadioStationType
 	// OW2 is only ST=2, Planning of radio station equipment
 	// TODO: make structure
 	OW2 string
@@ -59,7 +60,7 @@ type ListOpts struct {
 }
 
 // NewLicenseListOptions returns an initialized ListOpts structure.
-func NewLicenseListOptions(ow RadioStationType, da bool) ListOpts {
+func NewLicenseListOptions(ow radiotype.RadioStationType, da bool) ListOpts {
 	opts := ListOpts{}
 	opts.ST = License
 	opts.DA = da
