@@ -16,7 +16,7 @@ func main() {
 	}
 
 	opts := soumuradio.NewLicenseListOptions(soumuradio.License, soumuradio.Amateur, false)
-	result, err := cli.GetList(nil, opts)
+	result, err := cli.GetListAPI(nil, opts)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)

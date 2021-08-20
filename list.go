@@ -4,8 +4,8 @@ import (
 	"context"
 )
 
-// GetList is Method for getting number
-func (c *Client) GetList(ctx context.Context, opt ListOpts) (*Lists, error) {
+// GetListAPI is Method for getting number
+func (c *Client) GetListAPI(ctx context.Context, opt ListOpts) (*Lists, error) {
 	spath := "/musen/list"
 
 	req, err := c.newRequest(ctx, "GET", spath, opt, nil)
