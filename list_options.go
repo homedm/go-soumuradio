@@ -57,23 +57,23 @@ type ListOpts struct {
 }
 
 // NewLicenseListOptions returns an initialized ListOpts structure.
-func NewLicenseListOptions(st TargetInfo, ow RadioStationType, da bool) ListOpts {
+func NewLicenseListOptions(ow RadioStationType, da bool) ListOpts {
 	opts := ListOpts{}
-	opts.ST = st
+	opts.ST = License
 	opts.DA = da
 	opts.SC = 1
-	opts.DC = 3
+	opts.DC = 1
 	opts.OW = ow
 	return opts
 }
 
 // NewRegistrationListOptions returns an initialized ListOpts structure.
-func NewRegistrationListOptions(st TargetInfo, ow2 string, da bool) ListOpts {
+func NewRegistrationListOptions(ow2 string, da bool) ListOpts {
 	opts := ListOpts{}
-	opts.ST = st
+	opts.ST = Registration
 	opts.DA = da
 	opts.SC = 1
-	opts.DC = 3
+	opts.DC = 1
 	opts.OW2 = ow2
 	return opts
 }

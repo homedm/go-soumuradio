@@ -30,3 +30,12 @@ func (c *Client) GetListAPI(ctx context.Context, opt ListOpts) (*Lists, error) {
 
 	return &lists, nil
 }
+
+func (c *Client) GetRadioList(ctx context.Context, opt ListOpts) ([]Musen, error) {
+	ret, err := c.GetListAPI(ctx, opt)
+	if err != nil {
+		return nil, err
+	}
+
+	return ret.Musen, nil
+}
