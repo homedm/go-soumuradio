@@ -1,29 +1,29 @@
-package soumuradio
+package prefecture
 
 // ComprehensiveCommunicationStation is Comprehensive Communication Station
-type ComprehensiveCommunicationStation string
+type Prefecture string
 
 const (
 	// Hokkaido is Hokkaido Comprehensive Communication Station
-	Hokkaido ComprehensiveCommunicationStation = "J"
+	Hokkaido Prefecture = "J"
 	// Tohoku is Tohoku Comprehensive Communication Station
-	Tohoku ComprehensiveCommunicationStation = "I"
+	Tohoku Prefecture = "I"
 	// Kanto is Kanto Comprehensive Communication Station
-	Kanto ComprehensiveCommunicationStation = "A"
+	Kanto Prefecture = "A"
 	// Shinetu is Shinetu Comprehensive Communication Station
-	Shinetu ComprehensiveCommunicationStation = "B"
+	Shinetu Prefecture = "B"
 	// Hokuriku is Hokuriku Comprehensive Communication Station
-	Hokuriku ComprehensiveCommunicationStation = "D"
+	Hokuriku Prefecture = "D"
 	// Tokai is Tokai Comprehensive Communication Station
-	Tokai ComprehensiveCommunicationStation = "C"
+	Tokai Prefecture = "C"
 	// Kinki is Kinki Comprehensive Communication Station
-	Kinki ComprehensiveCommunicationStation = "E"
+	Kinki Prefecture = "E"
 	// Chugoku is Chugoku Comprehensive Communication Station
-	Chugoku ComprehensiveCommunicationStation = "F"
+	Chugoku Prefecture = "F"
 	// Shikoku is Shikoku Comprehensive Communication Station
-	Shikoku ComprehensiveCommunicationStation = "G"
+	Shikoku Prefecture = "G"
 	// Kyushu is Kyushu Comprehensive Communication Station
-	Kyushu ComprehensiveCommunicationStation = "H"
+	Kyushu Prefecture = "H"
 	// Okinawa is Okinawa Comprehensive Communication Station
-	Okinawa ComprehensiveCommunicationStation = "O"
+	Okinawa Prefecture = "O"
 )

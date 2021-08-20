@@ -4,6 +4,8 @@ import (
 	"net/url"
 	"strconv"
 	"time"
+
+	"github.com/tomato3713/soumuradio/prefecture"
 )
 
 // ListOpts is Options of List Information API
@@ -22,7 +24,7 @@ type ListOpts struct {
 	// TODO: make structure
 	OW2 string
 	// Comprehensive communication station
-	IT ComprehensiveCommunicationStation
+	IT prefecture.Prefecture
 	// only ST=1, Prefecture / city
 	// Reference: http://www.soumu.go.jp/main_content/000632830.pdf
 	HCV string
