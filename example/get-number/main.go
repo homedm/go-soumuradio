@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/tomato3713/soumuradio"
+	"github.com/tomato3713/soumuradio/radiotype"
 )
 
 func main() {
@@ -14,7 +15,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	opts := soumuradio.NewNumOptions(soumuradio.License, soumuradio.Amateur)
+	opts := soumuradio.NewNumOptions(soumuradio.License, radiotype.Amateur)
 	result, err := cli.GetTotalCount(nil, opts)
 	if err != nil {
 		os.Exit(1)

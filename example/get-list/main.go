@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/tomato3713/soumuradio"
+	"github.com/tomato3713/soumuradio/radiotype"
 )
 
 func main() {
@@ -15,7 +16,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	opts := soumuradio.NewLicenseListOptions(soumuradio.Amateur, false)
+	opts := soumuradio.NewLicenseListOptions(radiotype.Amateur, false)
 	result, err := cli.GetListAPI(nil, opts)
 	if err != nil {
 		fmt.Println(err)
