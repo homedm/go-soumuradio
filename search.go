@@ -17,3 +17,15 @@ func (c *Client) GetRadioListWithDate(ctx context.Context, opt ListOpts, DF, DT 
 
 	return ret.Musen, nil
 }
+
+// GetRadioWithCallsign get radio list searched by callsign
+func (c *Client) GetRadioWithCallsign(ctx context.Context, opt ListOpts, str string) ([]Musen, error) {
+	opt.MA = str
+
+	ret, err := c.GetListAPI(ctx, opt)
+	if err != nil {
+		return nil, err
+	}
+
+	return ret.Musen, nil
+}
