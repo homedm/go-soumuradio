@@ -17,13 +17,13 @@ func main() {
 	}
 
 	opts := soumuradio.NewLicenseListOptions(radiotype.Amateur, false)
-	result, err := cli.GetRadioList(nil, opts)
+	result, err := cli.GetRadioLicenseList(nil, opts)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	for _, v := range result {
-		fmt.Printf("Station Name: %s\n\tLicense Date: %s\n", v.ListInfo.Name, v.ListInfo.LicenseDate)
+	for _, v := range result.LicenseInfo {
+		fmt.Printf("Station Name: %s\n\tLicense Date: %s\n", v.Name, v.LicenseDate)
 	}
 }
