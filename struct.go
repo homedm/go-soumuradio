@@ -75,3 +75,9 @@ type DetailInfo struct {
 	RegistrationNumber     string `json:"registrationNumber"`
 	RadioSpec2             string `json:"radioSpec2"`
 }
+
+type RadioSpec struct {
+	RadioFormat string
+	Freq        float64
+	Power       float64
+}
