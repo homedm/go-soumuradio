@@ -1,5 +1,40 @@
 package soumuradio
 
+import "time"
+
+type LicenseList struct {
+	LicenseInfo    []LicenseInfo
+	TotalCount     int
+	LastUpdateDate time.Time
+}
+
+// LicenseInfo is the structure of radio license information.
+type LicenseInfo struct {
+	No                      int
+	Name                    string
+	TdfkCd                  string
+	Note                    string
+	Address                 string
+	ValidTerms              time.Time
+	RadioEquipmentLocation  string
+	RadioSpec               RadioSpec
+	RadioStationPurpose     string
+	PermittedOperatingHours string
+	LicenseDate             time.Time
+	BroadcastMatter         string
+	CommMatter              string
+	Office                  string
+	CommPartner             string
+	StartingLimit           string
+	BroadcastDistrict       string
+	WorkPersonName          string
+	IdentificationSignals   string
+	RadioStationNumber      string
+	RadioStationCategory    string
+	MovementArea            string
+	LicenseNumber           string
+}
+
 // Num is API Response for getting number
 type Num struct {
 	MusenInformation MusenInformation `json:"musenInformation"`
@@ -45,11 +80,11 @@ type ListInfo struct {
 
 // DetailInfo is the struct for List acquistion API
 type DetailInfo struct {
-	Name                  string `json:"name"`
-	Note                  string `json:"note"`
-	Address               string `json:"address"`
-	ValidTerms            string `json:"validTerms"`
-	RadioEuipmentLocation string `json:"radioEuipmentLocation"`
+	Name                   string `json:"name"`
+	Note                   string `json:"note"`
+	Address                string `json:"address"`
+	ValidTerms             string `json:"validTerms"`
+	RadioEquipmentLocation string `json:"radioEquipmentLocation"`
 
 	// only lisense information
 	RadioSpec1              string `json:"radioSpec1"`
@@ -76,6 +111,8 @@ type DetailInfo struct {
 	RadioSpec2             string `json:"radioSpec2"`
 }
 
+// RadioSpec is the structure consisting of radio wave type, frequency, and
+// antenna power.
 type RadioSpec struct {
 	RadioFormat string
 	Freq        float64

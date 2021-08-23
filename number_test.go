@@ -1,7 +1,6 @@
 package soumuradio
 
 import (
-	"context"
 	"log"
 	"net/http"
 	"testing"
@@ -11,7 +10,7 @@ import (
 )
 
 func TestGetTotalCount(t *testing.T) {
-	r, err := recorder.New("fixtures/soumuradio")
+	r, err := recorder.New("fixtures/number01")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,14 +26,14 @@ func TestGetTotalCount(t *testing.T) {
 	}
 
 	opts := NewNumOptions(License, radiotype.Amateur)
-	_, err = cli.GetTotalCount(context.Background(), opts)
+	_, err = cli.GetTotalCount(nil, opts)
 	if err != nil {
 		t.Fatalf("fault to GetTotalCount returned err: %v", err)
 	}
 }
 
 func TestGetLastUpdateDate(t *testing.T) {
-	r, err := recorder.New("fixtures/soumuradio")
+	r, err := recorder.New("fixtures/number02")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -50,7 +49,7 @@ func TestGetLastUpdateDate(t *testing.T) {
 	}
 
 	opts := NewNumOptions(License, radiotype.Amateur)
-	_, err = cli.GetLastUpdateDate(context.Background(), opts)
+	_, err = cli.GetLastUpdateDate(nil, opts)
 	if err != nil {
 		t.Fatalf("fault to GetLastUpdateDate returned err: %v", err)
 	}

@@ -43,3 +43,8 @@ func decodeBody(resp *http.Response, out interface{}, f *os.File) error {
 	decorder := json.NewDecoder(resp.Body)
 	return decorder.Decode(out)
 }
+
+func parseRadioSpec(str string) (RadioSpec, error) {
+	// TODO
+	return RadioSpec{}, nil
+}
