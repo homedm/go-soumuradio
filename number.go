@@ -4,10 +4,12 @@ import (
 	"context"
 	"strconv"
 	"time"
+
+	"github.com/tomato3713/soumuradio/internal"
 )
 
 // GetNumberAPI is Method for Number API
-func (c *Client) GetNumberAPI(ctx context.Context, opt NumOpts) (*Num, error) {
+func (c *Client) GetNumberAPI(ctx context.Context, opt NumOpts) (*internal.Num, error) {
 	spath := "/musen/num"
 
 	req, err := c.newRequest(ctx, "GET", spath, opt, nil)
@@ -25,7 +27,7 @@ func (c *Client) GetNumberAPI(ctx context.Context, opt NumOpts) (*Num, error) {
 		return nil, err
 	}
 
-	var num Num
+	var num internal.Num
 	if err := decodeBody(res, &num, nil); err != nil {
 		return nil, err
 	}
