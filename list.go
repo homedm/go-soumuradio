@@ -4,10 +4,12 @@ import (
 	"context"
 	"strconv"
 	"time"
+
+	"github.com/tomato3713/soumuradio/internal"
 )
 
 // GetListAPI is Method for getting number
-func (c *Client) GetListAPI(ctx context.Context, opt ListOpts) (*Lists, error) {
+func (c *Client) GetListAPI(ctx context.Context, opt ListOpts) (*internal.Lists, error) {
 	spath := "/musen/list"
 
 	req, err := c.newRequest(ctx, "GET", spath, opt, nil)
@@ -25,7 +27,7 @@ func (c *Client) GetListAPI(ctx context.Context, opt ListOpts) (*Lists, error) {
 		return nil, err
 	}
 
-	var lists Lists
+	var lists internal.Lists
 	if err := decodeBody(res, &lists, nil); err != nil {
 		return nil, err
 	}
