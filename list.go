@@ -47,3 +47,18 @@ func (c *Client) GetRadioLicenseList(ctx context.Context, opt ListOpts) (License
 
 	return ret, nil
 }
+
+func (c *Client) GetRadioRegistrationList(ctx context.Context, opt ListOpts) (RegistrationList, error) {
+	opt.ST = 2
+	result, err := c.GetListAPI(ctx, opt)
+	if err != nil {
+		return RegistrationList{}, err
+	}
+
+	ret, err := convertInternalLists2RegistrationList(result)
+	if err != nil {
+		return RegistrationList{}, err
+	}
+
+	return ret, nil
+}
