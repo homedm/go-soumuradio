@@ -7,6 +7,41 @@ import (
 	"github.com/tomato3713/soumuradio/internal"
 )
 
+func convertInternalLists2RegistrationInfo(v *internal.Lists) (RegistrationList, error) {
+	var ret RegistrationList
+	var registrations []RegistrationInfo
+	var err error
+	for _, e := range v.Musen {
+		var r RegistrationInfo
+		r.No = e.ListInfo.No
+		r.Name = e.ListInfo.Name
+		r.ValidTerms = e.ListInfo.ValidTerms
+		r.ItCd = e.ListInfo.ItCd
+		r.RegistrationDate = e.ListInfo.RegistrationDate
+
+		r.Note = e.DetailInfo.Note
+		r.Address = e.DetailInfo.Address
+		r.RadioEquipmentLocation = e.DetailInfo.RadioEquipmentLocation
+		r.RadioEquipmentStandard = e.DetailInfo.RadioEquipmentStandard
+		r.RegistrationNumber = e.DetailInfo.RegistrationNumber
+		r.RadioSpec2 = e.DetailInfo.RadioSpec2
+
+		registrations = append(registrations, r)
+	}
+	ret.RegistrationInfo = registrations
+
+	ret.LastUpdateDate, err = time.Parse("2006-01-02", v.MusenInformation.LastUpdateDate)
+	if err != nil {
+		return RegistrationList{}, err
+	}
+	ret.TotalCount, err = strconv.Atoi(v.MusenInformation.TotalCount)
+	if err != nil {
+		return RegistrationList{}, err
+	}
+
+	return ret, nil
+}
+
 func convertInternalLists2LicenseInfo(v *internal.Lists) (LicenseList, error) {
 	var ret LicenseList
 	var licenses []LicenseInfo
