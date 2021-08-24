@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+
+	"github.com/tomato3713/soumuradio/internal"
 )
 
 func checkStatusCode(res *http.Response) error {
@@ -14,14 +16,14 @@ func checkStatusCode(res *http.Response) error {
 		return nil
 	}
 	if sc == 400 {
-		var errJSON ErrorBody
+		var errJSON internal.ErrorBody
 		if err := decodeBody(res, &errJSON, nil); err != nil {
 			logf("invalid Request, but cannot decode JSON Response: %v", err)
 		}
 		for _, errArr := range errJSON.Err {
 			logf("invalid Request: %v", errArr.ErrMsg)
 		}
-		return InvalidRequestError(errJSON)
+		return errJSON.InvalidRequestError()
 	}
 
 	if sc == 500 {
