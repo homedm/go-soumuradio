@@ -57,7 +57,7 @@ func main() {
 		fmt.Printf("  CommMatter: %+v\n", v.DetailInfo.CommMatter)
 		fmt.Printf("  CommPartner: %+v\n", v.DetailInfo.CommPartner)
 		fmt.Printf("  IdentificationSignals: %+v\n", v.DetailInfo.IdentificationSignals)
-		fmt.Printf("  RadioEquipmentLocation: %+v\n", v.DetailInfo.RadioEuipmentLocation)
+		fmt.Printf("  RadioEquipmentLocation: %+v\n", v.DetailInfo.RadioEquipmentLocation)
 		fmt.Printf("  MovementArea: %+v\n", v.DetailInfo.MovementArea)
 		fmt.Printf("  RadioSpec1: %+v\n", v.DetailInfo.RadioSpec1)
 		// 		fmt.Printf("  RadioSpec2: %+v\n", v.DetailInfo.RadioSpec2)
