@@ -40,7 +40,7 @@ func (c *Client) GetRadioLicenseList(ctx context.Context, opt ListOpts) (License
 		return LicenseList{}, err
 	}
 
-	ret, err := convertInternalLists2LicenseInfo(result)
+	ret, err := convertInternalLists2LicenseList(result)
 	if err != nil {
 		return LicenseList{}, err
 	}

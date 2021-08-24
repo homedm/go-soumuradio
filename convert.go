@@ -7,7 +7,7 @@ import (
 	"github.com/tomato3713/soumuradio/internal"
 )
 
-func convertInternalLists2RegistrationInfo(v *internal.Lists) (RegistrationList, error) {
+func convertInternalLists2RegistrationList(v *internal.Lists) (RegistrationList, error) {
 	var ret RegistrationList
 	var registrations []RegistrationInfo
 	var err error
@@ -42,7 +42,7 @@ func convertInternalLists2RegistrationInfo(v *internal.Lists) (RegistrationList,
 	return ret, nil
 }
 
-func convertInternalLists2LicenseInfo(v *internal.Lists) (LicenseList, error) {
+func convertInternalLists2LicenseList(v *internal.Lists) (LicenseList, error) {
 	var ret LicenseList
 	var licenses []LicenseInfo
 	var err error
