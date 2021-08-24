@@ -42,10 +42,19 @@ func (c *Client) GetRadioLicenseList(ctx context.Context, opt ListOpts) (License
 		return LicenseList{}, err
 	}
 
-	var ret LicenseList
+	ret, err := convertInternalLists2LicenseInfo(result)
+	if err != nil {
+		return LicenseList{}, err
+	}
 
+	return ret, nil
+}
+
+func convertInternalLists2LicenseInfo(v *internal.Lists) (LicenseList, error) {
+	var ret LicenseList
 	var licenses []LicenseInfo
-	for _, e := range result.Musen {
+	var err error
+	for _, e := range v.Musen {
 		var l LicenseInfo
 		l.No, err = strconv.Atoi(e.ListInfo.No)
 		if err != nil {
@@ -58,9 +67,11 @@ func (c *Client) GetRadioLicenseList(ctx context.Context, opt ListOpts) (License
 
 		l.Note = e.DetailInfo.Note
 		l.Address = e.DetailInfo.Address
-		l.ValidTerms, err = time.Parse("2006-01-02まで", e.DetailInfo.ValidTerms)
-		if err != nil {
-			return LicenseList{}, err
+		if e.DetailInfo.ValidTerms != "" {
+			l.ValidTerms, err = time.Parse("2006-01-02まで", e.DetailInfo.ValidTerms)
+			if err != nil {
+				return LicenseList{}, err
+			}
 		}
 		l.RadioEquipmentLocation = e.DetailInfo.RadioEquipmentLocation
 		if e.DetailInfo.RadioSpec1 != "" {
@@ -87,11 +98,11 @@ func (c *Client) GetRadioLicenseList(ctx context.Context, opt ListOpts) (License
 	}
 	ret.LicenseInfo = licenses
 
-	ret.LastUpdateDate, err = time.Parse("2006-01-02", result.MusenInformation.LastUpdateDate)
+	ret.LastUpdateDate, err = time.Parse("2006-01-02", v.MusenInformation.LastUpdateDate)
 	if err != nil {
 		return LicenseList{}, err
 	}
-	ret.TotalCount, err = strconv.Atoi(result.MusenInformation.TotalCount)
+	ret.TotalCount, err = strconv.Atoi(v.MusenInformation.TotalCount)
 	if err != nil {
 		return LicenseList{}, err
 	}
