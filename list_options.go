@@ -1,6 +1,7 @@
 package soumuradio
 
 import (
+	"fmt"
 	"net/url"
 	"strconv"
 	"time"
@@ -142,4 +143,23 @@ func (opt ListOpts) encodeOption() url.Values {
 		}
 	}
 	return params
+}
+
+func getDigit(num int) int {
+	digit := 0
+	for num != 0 {
+		num /= 10
+		digit++
+	}
+	return num
+}
+
+func (opt *ListOpts) SetStartCount(sc int) error {
+	if sc != 0 {
+		if getDigit(sc) > 10 {
+			return fmt.Errorf("start count must be under 10 digits")
+		}
+	}
+	opt.SC = sc
+	return nil
 }
