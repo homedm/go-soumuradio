@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strings"
+	"unicode"
 
 	"github.com/tomato3713/soumuradio/internal"
 )
@@ -46,7 +48,34 @@ func decodeBody(resp *http.Response, out interface{}, f *os.File) error {
 	return decorder.Decode(out)
 }
 
-func parseRadioSpec(str string) (RadioSpec, error) {
-	// TODO
-	return RadioSpec{}, nil
+func parseRadioSpec(str string) ([]RadioSpec, error) {
+	var rs []RadioSpec
+	strRune := []rune(str)
+
+	for j := 0; j < len(strRune); j++ {
+		var v RadioSpec
+		for i := j; i < len(strRune); i++ {
+			if unicode.IsSpace(strRune[i]) {
+				continue
+			}
+			if string(strRune[i]) == string("\\") {
+				if i+1 < len(strRune) && string(strRune[i+1]) == "t" {
+					if v.RadioFormat == "" {
+						v.RadioFormat = strings.ReplaceAll(string(strRune[j:i]), " ", "")
+					} else {
+						v.Freq = strings.ReplaceAll(string(strRune[j:i]), " ", "")
+					}
+					i += 2
+					j = i
+				} else if i+1 < len(strRune) && string(strRune[i+1]) == "n" {
+					v.Power = strings.ReplaceAll(string(strRune[j:i]), " ", "")
+					i += 2
+					j = i - 1
+					rs = append(rs, v)
+					break
+				}
+			}
+		}
+	}
+	return rs, nil
 }

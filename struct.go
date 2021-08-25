@@ -6,8 +6,8 @@ import "time"
 // antenna power.
 type RadioSpec struct {
 	RadioFormat string
-	Freq        float64
-	Power       float64
+	Freq        string // float64
+	Power       string // float64
 }
 
 type LicenseList struct {
@@ -24,23 +24,23 @@ type LicenseInfo struct {
 	RadioStationPurpose     string
 	LicenseDate             time.Time
 	CommMatter              string
-	Note                    string    // Detail only
-	Address                 string    // Detail only
-	ValidTerms              time.Time // Detail only
-	RadioEquipmentLocation  string    // Detail only
-	RadioSpec               RadioSpec // Detail only
-	PermittedOperatingHours string    // Detail only
-	BroadcastMatter         string    // Detail only
-	Office                  string    // Detail only
-	CommPartner             string    // Detail only
-	StartingLimit           string    // Detail only
-	BroadcastDistrict       string    // Detail only
-	WorkPersonName          string    // Detail only
-	IdentificationSignals   string    // Detail only
-	RadioStationNumber      string    // Detail only
-	RadioStationCategory    string    // Detail only
-	MovementArea            string    // Detail only
-	LicenseNumber           string    // Detail only
+	Note                    string      // Detail only
+	Address                 string      // Detail only
+	ValidTerms              time.Time   // Detail only
+	RadioEquipmentLocation  string      // Detail only
+	RadioSpec               []RadioSpec // Detail only
+	PermittedOperatingHours string      // Detail only
+	BroadcastMatter         string      // Detail only
+	Office                  string      // Detail only
+	CommPartner             string      // Detail only
+	StartingLimit           string      // Detail only
+	BroadcastDistrict       string      // Detail only
+	WorkPersonName          string      // Detail only
+	IdentificationSignals   string      // Detail only
+	RadioStationNumber      string      // Detail only
+	RadioStationCategory    string      // Detail only
+	MovementArea            string      // Detail only
+	LicenseNumber           string      // Detail only
 }
 
 type RegistrationList struct {
@@ -60,5 +60,5 @@ type RegistrationInfo struct {
 	RadioEquipmentLocation string // Detail only
 	RadioEquipmentStandard string // Detail only
 	RegistrationNumber     string // Detail only
-	RadioSpec2             string // Detail only
+	RadioSpec              string // Detail only
 }

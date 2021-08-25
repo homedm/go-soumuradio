@@ -24,7 +24,7 @@ func convertInternalLists2RegistrationList(v *internal.Lists) (RegistrationList,
 		r.RadioEquipmentLocation = e.DetailInfo.RadioEquipmentLocation
 		r.RadioEquipmentStandard = e.DetailInfo.RadioEquipmentStandard
 		r.RegistrationNumber = e.DetailInfo.RegistrationNumber
-		r.RadioSpec2 = e.DetailInfo.RadioSpec2
+		r.RadioSpec = e.DetailInfo.RadioSpec2
 
 		registrations = append(registrations, r)
 	}
