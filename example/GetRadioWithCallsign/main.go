@@ -61,7 +61,7 @@ func main() {
 		fmt.Printf("  MovementArea: %+v\n", v.MovementArea)
 		fmt.Printf("  RadioSpec\n")
 		for _, rs := range v.RadioSpec {
-			fmt.Printf("  - %v, %v, %v\n", rs.RadioFormat, rs.Freq, rs.Power)
+			fmt.Printf("  - %q, %v, %vW\n", rs.RadioFormat, rs.Freq, rs.Power)
 		}
 		fmt.Printf("  WorkPersonName: %+v\n", v.WorkPersonName)
 		fmt.Printf("  Note: %+v\n", v.Note)

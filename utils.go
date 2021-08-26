@@ -2,10 +2,13 @@ package soumuradio
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
+	"math"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
 	"unicode"
 
@@ -60,15 +63,23 @@ func parseRadioSpec(str string) ([]RadioSpec, error) {
 			}
 			if string(strRune[i]) == string("\\") {
 				if i+1 < len(strRune) && string(strRune[i+1]) == "t" {
-					if v.RadioFormat == "" {
-						v.RadioFormat = strings.ReplaceAll(string(strRune[j:i]), " ", "")
+					if len(v.RadioFormat) == 0 {
+						rf := string(strRune[j:i])
+						v.RadioFormat = strings.Fields(rf)
 					} else {
 						v.Freq = strings.ReplaceAll(string(strRune[j:i]), " ", "")
 					}
 					i += 2
 					j = i
 				} else if i+1 < len(strRune) && string(strRune[i+1]) == "n" {
-					v.Power = strings.ReplaceAll(string(strRune[j:i]), " ", "")
+					powerstr := strings.ReplaceAll(string(strRune[j:i]), " ", "")
+					if len(powerstr) > 0 {
+						power, err := rmSIPrefix(powerstr)
+						if err != nil {
+							return nil, err
+						}
+						v.Power = power
+					}
 					i += 2
 					j = i - 1
 					rs = append(rs, v)
@@ -78,4 +89,49 @@ func parseRadioSpec(str string) ([]RadioSpec, error) {
 		}
 	}
 	return rs, nil
+}
+
+func rmSIPrefix(str string) (float64, error) {
+	u := "W"
+
+	idx := strings.Index(str, u)
+	if idx == -1 {
+		return 0, fmt.Errorf("could not parsed error: %v", str)
+	}
+
+	corr := map[rune]int{
+		'd': -1,
+		'c': -2,
+		'm': -3,
+		'µ': -6,
+		'n': -9,
+		'p': -12,
+		'f': -15,
+		'a': -18,
+		'z': -21,
+		'y': -24,
+		'h': 2,
+		'k': 3,
+		'M': 6,
+		'G': 9,
+		'T': 12,
+		'P': 15,
+		'E': 18,
+		'Z': 24,
+	}
+
+	if unicode.IsNumber(rune(str[idx-1])) {
+		return strconv.ParseFloat(string(str[:idx]), 64)
+	}
+	for k, v := range corr {
+		if rune(str[idx-1]) == k {
+			num, err := strconv.ParseFloat(string(str[:idx-1]), 64)
+			if err != nil {
+				return 0, err
+			}
+
+			return num * math.Pow10(v), nil
+		}
+	}
+	return 0, fmt.Errorf("could not parsed error: %v", str)
 }

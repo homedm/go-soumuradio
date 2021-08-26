@@ -5,9 +5,9 @@ import "time"
 // RadioSpec is the structure consisting of radio wave type, frequency, and
 // antenna power.
 type RadioSpec struct {
-	RadioFormat string
-	Freq        string // float64
-	Power       string // float64
+	RadioFormat []string
+	Freq        string
+	Power       float64
 }
 
 type LicenseList struct {
