@@ -67,7 +67,7 @@ func convertInternalLists2LicenseList(v *internal.Lists) (LicenseList, error) {
 		}
 		l.RadioEquipmentLocation = e.DetailInfo.RadioEquipmentLocation
 		if e.DetailInfo.RadioSpec1 != "" {
-			l.RadioSpec, err = parseRadioSpec(e.DetailInfo.RadioSpec1)
+			l.RadioSpec, err = parseRadioSpec1(e.DetailInfo.RadioSpec1)
 			if err != nil {
 				return LicenseList{}, err
 			}

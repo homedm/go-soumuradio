@@ -37,9 +37,9 @@ func main() {
 		fmt.Printf(" TdfkCd: %+v\n", v.TdfkCd)
 		fmt.Printf(" Radio Station Purpose: %+v\n", v.RadioStationPurpose)
 		fmt.Printf(" LicenseDate: %+v\n", v.LicenseDate)
-		// 		fmt.Printf(" ItCd: %+v\n", v.ListInfo.ItCd)
-		// 		fmt.Printf(" Registration Date: %+v\n", v.ListInfo.RegistrationDate)
-		// 		fmt.Printf(" Valid Terms: %+v\n", v.ListInfo.ValidTerms)
+		// 		fmt.Printf(" ItCd: %+v\n", v.ItCd)
+		// 		fmt.Printf(" Registration Date: %+v\n", v.RegistrationDate)
+		// 		fmt.Printf(" Valid Terms: %+v\n", v.ValidTerms)
 		fmt.Printf("DetailInfo:\n")
 		fmt.Printf("  Name: %+v\n", v.Name)
 		fmt.Printf("  Address: %+v\n", v.Address)
@@ -65,8 +65,8 @@ func main() {
 		}
 		fmt.Printf("  WorkPersonName: %+v\n", v.WorkPersonName)
 		fmt.Printf("  Note: %+v\n", v.Note)
-		// 		fmt.Printf("  RadioEquipmentStandard: %+v\n", v.DetailInfo.RadioEquipmentStandard)
-		// 		fmt.Printf("  RegistrationDate: %+v\n", v.DetailInfo.RegistrationDate)
-		// 		fmt.Printf("  RegistrationNumber: %+v\n", v.DetailInfo.RegistrationNumber)
+		// 		fmt.Printf("  RadioEquipmentStandard: %+v\n", v.RadioEquipmentStandard)
+		// 		fmt.Printf("  RegistrationDate: %+v\n", v.RegistrationDate)
+		// 		fmt.Printf("  RegistrationNumber: %+v\n", v.RegistrationNumber)
 	}
 }

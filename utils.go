@@ -51,7 +51,7 @@ func decodeBody(resp *http.Response, out interface{}, f *os.File) error {
 	return decorder.Decode(out)
 }
 
-func parseRadioSpec(str string) ([]RadioSpec, error) {
+func parseRadioSpec1(str string) ([]RadioSpec, error) {
 	var rs []RadioSpec
 	strRune := []rune(str)
 
