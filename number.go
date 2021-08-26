@@ -8,8 +8,8 @@ import (
 	"github.com/tomato3713/soumuradio/internal"
 )
 
-// GetNumberAPI is Method for Number API
-func (c *Client) GetNumberAPI(ctx context.Context, opt NumOpts) (*internal.Num, error) {
+// getNumberAPI is Method for Number API
+func (c *Client) getNumberAPI(ctx context.Context, opt NumOpts) (*internal.Num, error) {
 	spath := "/musen/num"
 
 	req, err := c.newRequest(ctx, "GET", spath, opt, nil)
@@ -37,7 +37,7 @@ func (c *Client) GetNumberAPI(ctx context.Context, opt NumOpts) (*internal.Num, 
 
 // GetTotalCount is Method for getting number of radio
 func (c *Client) GetTotalCount(ctx context.Context, opt NumOpts) (int, error) {
-	ret, err := c.GetNumberAPI(ctx, opt)
+	ret, err := c.getNumberAPI(ctx, opt)
 	if err != nil {
 		return 0, err
 	}
@@ -51,7 +51,7 @@ func (c *Client) GetTotalCount(ctx context.Context, opt NumOpts) (int, error) {
 }
 
 func (c *Client) GetLastUpdateDate(ctx context.Context, opt NumOpts) (time.Time, error) {
-	ret, err := c.GetNumberAPI(ctx, opt)
+	ret, err := c.getNumberAPI(ctx, opt)
 	if err != nil {
 		return time.Time{}, err
 	}

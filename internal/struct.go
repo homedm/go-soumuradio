@@ -1,5 +1,7 @@
 package internal
 
+import "fmt"
+
 // Num is API Response for getting number
 type Num struct {
 	MusenInformation MusenInformation `json:"musenInformation"`
@@ -74,4 +76,26 @@ type DetailInfo struct {
 	RadioEquipmentStandard string `json:"radioEquipmentStandard"`
 	RegistrationNumber     string `json:"registrationNumber"`
 	RadioSpec2             string `json:"radioSpec2"`
+}
+
+// ErrorBody is json response, if request options is failed.
+type ErrorBody struct {
+	Errs Errs `json:"errs"`
+	Err  Err  `json:"err"`
+}
+
+// Errs is errors information
+type Errs struct {
+	ErrPost  string `json:"errPost"`
+	ErrCount string `json:"errCount"`
+}
+
+// Err is error information
+type Err []struct {
+	ErrMsg string `json:"errMsg"`
+	ErrCd  string `json:"errCd"`
+}
+
+func (errJSON *ErrorBody) InvalidRequestError() error {
+	return fmt.Errorf("invalid request: %v", errJSON)
 }
