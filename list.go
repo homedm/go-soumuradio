@@ -6,8 +6,8 @@ import (
 	"github.com/tomato3713/soumuradio/internal"
 )
 
-// GetListAPI is Method for getting number
-func (c *Client) GetListAPI(ctx context.Context, opt ListOpts) (*internal.Lists, error) {
+// getListAPI is Method for getting number
+func (c *Client) getListAPI(ctx context.Context, opt ListOpts) (*internal.Lists, error) {
 	spath := "/musen/list"
 
 	req, err := c.newRequest(ctx, "GET", spath, opt, nil)
@@ -35,7 +35,7 @@ func (c *Client) GetListAPI(ctx context.Context, opt ListOpts) (*internal.Lists,
 
 func (c *Client) GetRadioLicenseList(ctx context.Context, opt ListOpts) (LicenseList, error) {
 	opt.ST = License
-	result, err := c.GetListAPI(ctx, opt)
+	result, err := c.getListAPI(ctx, opt)
 	if err != nil {
 		return LicenseList{}, err
 	}
@@ -50,7 +50,7 @@ func (c *Client) GetRadioLicenseList(ctx context.Context, opt ListOpts) (License
 
 func (c *Client) GetRadioRegistrationList(ctx context.Context, opt ListOpts) (RegistrationList, error) {
 	opt.ST = Registration
-	result, err := c.GetListAPI(ctx, opt)
+	result, err := c.getListAPI(ctx, opt)
 	if err != nil {
 		return RegistrationList{}, err
 	}
