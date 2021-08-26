@@ -34,7 +34,7 @@ func (c *Client) GetListAPI(ctx context.Context, opt ListOpts) (*internal.Lists,
 }
 
 func (c *Client) GetRadioLicenseList(ctx context.Context, opt ListOpts) (LicenseList, error) {
-	opt.ST = 1
+	opt.ST = License
 	result, err := c.GetListAPI(ctx, opt)
 	if err != nil {
 		return LicenseList{}, err
@@ -49,7 +49,7 @@ func (c *Client) GetRadioLicenseList(ctx context.Context, opt ListOpts) (License
 }
 
 func (c *Client) GetRadioRegistrationList(ctx context.Context, opt ListOpts) (RegistrationList, error) {
-	opt.ST = 2
+	opt.ST = Registration
 	result, err := c.GetListAPI(ctx, opt)
 	if err != nil {
 		return RegistrationList{}, err
