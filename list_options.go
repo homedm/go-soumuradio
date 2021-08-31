@@ -90,7 +90,7 @@ func (opt ListOpts) encodeOption() url.Values {
 		params.Add("DA", "0")
 	}
 	params.Add("SC", strconv.Itoa(opt.SC))
-	params.Add("DC", strconv.Itoa(opt.SC))
+	params.Add("DC", strconv.Itoa(opt.DC))
 	params.Add("ST", strconv.Itoa(int(opt.ST)))
 	if opt.OW != "" {
 		params.Add("OW", string(opt.OW))
