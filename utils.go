@@ -92,45 +92,55 @@ func parseRadioSpec1(str string) ([]RadioSpec, error) {
 }
 
 func rmSIPrefix(str string) (float64, error) {
+	strr := []rune(str)
 	u := "W"
 
-	idx := strings.Index(str, u)
-	if idx == -1 {
+	byteIdx := strings.Index(str, u)
+	if byteIdx == -1 {
 		return 0, fmt.Errorf("could not parsed error: %v", str)
 	}
+	runeIdx := len([]rune(str[0:byteIdx])) + 1
 
-	corr := map[rune]int{
-		'd': -1,
-		'c': -2,
-		'm': -3,
-		'µ': -6,
-		'n': -9,
-		'p': -12,
-		'f': -15,
-		'a': -18,
-		'z': -21,
-		'y': -24,
-		'h': 2,
-		'k': 3,
-		'M': 6,
-		'G': 9,
-		'T': 12,
-		'P': 15,
-		'E': 18,
-		'Z': 24,
+	corr := map[string]int{
+		"d": -1,
+		"c": -2,
+		"m": -3,
+		"μ": -6,
+		"n": -9,
+		"p": -12,
+		"f": -15,
+		"a": -18,
+		"z": -21,
+		"y": -24,
+		"h": 2,
+		"k": 3,
+		"M": 6,
+		"G": 9,
+		"T": 12,
+		"P": 15,
+		"E": 18,
+		"Z": 24,
 	}
 
-	if unicode.IsNumber(rune(str[idx-1])) {
-		return strconv.ParseFloat(string(str[:idx]), 64)
+	if unicode.IsNumber(strr[runeIdx-2]) {
+		num, err := strconv.ParseFloat(string(strr[:runeIdx-1]), 64)
+		if err != nil {
+			return 0, fmt.Errorf("isnumber is true: %v", err)
+		}
+		return num, nil
 	}
 	for k, v := range corr {
-		if rune(str[idx-1]) == k {
-			num, err := strconv.ParseFloat(string(str[:idx-1]), 64)
+		if string(strr[runeIdx-2]) == k {
+			num, err := strconv.ParseFloat(string(strr[:runeIdx-2]), 64)
 			if err != nil {
 				return 0, err
 			}
 
-			return num * math.Pow10(v), nil
+			if v > 0 {
+				return num * math.Pow10(v), nil
+			} else {
+				return num / math.Pow10(-v), nil
+			}
 		}
 	}
 	return 0, fmt.Errorf("could not parsed error: %v", str)
