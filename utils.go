@@ -51,6 +51,16 @@ func decodeBody(resp *http.Response, out interface{}, f *os.File) error {
 	return decorder.Decode(out)
 }
 
+func removeAllSpace(str string) string {
+	var ret []rune
+	for _, c := range str {
+		if !unicode.IsSpace(c) {
+			ret = append(ret, c)
+		}
+	}
+	return string(ret)
+}
+
 func parseRadioSpec1(str string) ([]RadioSpec, error) {
 	var rs []RadioSpec
 	strRune := []rune(str)
@@ -66,16 +76,16 @@ func parseRadioSpec1(str string) ([]RadioSpec, error) {
 					rf := string(strRune[j:i])
 					v.RadioFormat = strings.Fields(rf)
 				} else {
-					v.Freq = strings.ReplaceAll(string(strRune[j:i]), " ", "")
+					v.Freq = removeAllSpace(string(strRune[j:i]))
 				}
 				i += 2
 				j = i
 			} else if i+2 < len(strRune) && string(strRune[i:i+2]) == string("\\n") || i+1 == len(strRune) {
 				var powerstr string
 				if i+1 == len(strRune) {
-					powerstr = strings.ReplaceAll(string(strRune[j:i+1]), " ", "")
+					powerstr = removeAllSpace(string(strRune[j : i+1]))
 				} else {
-					powerstr = strings.ReplaceAll(string(strRune[j:i]), " ", "")
+					powerstr = removeAllSpace(string(strRune[j:i]))
 				}
 				if len(powerstr) > 0 {
 					power, err := rmSIPrefix(powerstr)
