@@ -28,6 +28,7 @@ func TestParseRadioSpec1(t *testing.T) {
 				{RadioFormat: []string{"3VA"}, Freq: "52MHz", Power: 50},
 				{RadioFormat: []string{"3VA"}, Freq: "145MHz", Power: 50},
 				{RadioFormat: []string{"3VA"}, Freq: "435MHz", Power: 50},
+				{RadioFormat: []string{"A1A"}, Freq: "4630kHz", Power: 50},
 			},
 		},
 		{
