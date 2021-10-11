@@ -61,30 +61,32 @@ func parseRadioSpec1(str string) ([]RadioSpec, error) {
 			if unicode.IsSpace(strRune[i]) {
 				continue
 			}
-			if string(strRune[i]) == string("\\") {
-				if i+1 < len(strRune) && string(strRune[i+1]) == "t" {
-					if len(v.RadioFormat) == 0 {
-						rf := string(strRune[j:i])
-						v.RadioFormat = strings.Fields(rf)
-					} else {
-						v.Freq = strings.ReplaceAll(string(strRune[j:i]), " ", "")
-					}
-					i += 2
-					j = i
-				} else if i+1 < len(strRune) && string(strRune[i+1]) == "n" {
-					powerstr := strings.ReplaceAll(string(strRune[j:i]), " ", "")
-					if len(powerstr) > 0 {
-						power, err := rmSIPrefix(powerstr)
-						if err != nil {
-							return nil, err
-						}
-						v.Power = power
-					}
-					i += 2
-					j = i - 1
-					rs = append(rs, v)
-					break
+			if i+2 < len(strRune) && string(strRune[i:i+2]) == string("\\t") {
+				if len(v.RadioFormat) == 0 {
+					rf := string(strRune[j:i])
+					v.RadioFormat = strings.Fields(rf)
+				} else {
+					v.Freq = strings.ReplaceAll(string(strRune[j:i]), " ", "")
 				}
+				i += 2
+				j = i
+			} else if i+2 < len(strRune) && string(strRune[i:i+2]) == string("\\n") || i+1 == len(strRune) {
+				var powerstr string
+				if i+1 == len(strRune) {
+					powerstr = strings.ReplaceAll(string(strRune[j:i+1]), " ", "")
+				} else {
+					powerstr = strings.ReplaceAll(string(strRune[j:i]), " ", "")
+				}
+				if len(powerstr) > 0 {
+					power, err := rmSIPrefix(powerstr)
+					if err != nil {
+						return nil, err
+					}
+					v.Power = power
+				}
+				rs = append(rs, v)
+				j = i + 1
+				break
 			}
 		}
 	}
